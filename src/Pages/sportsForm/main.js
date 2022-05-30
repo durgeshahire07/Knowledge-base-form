@@ -77,6 +77,7 @@ export default function Main() {
       }
     } catch (error) {
       console.log(error);
+      
     }
   }
   async function getCountry() {
@@ -112,7 +113,7 @@ export default function Main() {
       };
       const response = await axios(config);
       if (response.data) {
-        console.log("response: ",response.data);
+        // console.log("response: ",response.data);
         // console.log(JSON.stringify(response.data));
         setStar(response.data);
         
@@ -133,11 +134,9 @@ export default function Main() {
     getStar();
     
   }, []);
-  useEffect(()=>{
-    console.log("star: ",star)
-  },[star])
+  
   async function handleAddSport() {
-    setRes({
+    await setRes({
       ...res,
       calender: calendarField,
     });
@@ -158,7 +157,7 @@ export default function Main() {
       const response = await axios(config);
       // console.log(JSON.stringify(response.data));
       if (response.status === 200) {
-        console.log(response);
+        // console.log(response);
         alert("Your response has been saved!");
         setLoading(false);
         window.location.reload();
@@ -284,7 +283,7 @@ export default function Main() {
                   ...res,
                   sportName: e.target.value,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
             {/* 
@@ -325,7 +324,7 @@ export default function Main() {
                   ...res,
                   history: e.target.value,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
             <Form.Text className="text-muted">
@@ -343,7 +342,7 @@ export default function Main() {
                   ...res,
                   worldAssonFounded: e.target.value,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
           </Form.Group>
@@ -358,7 +357,7 @@ export default function Main() {
                   ...res,
                   indianAssonFounded: e.target.value,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
           </Form.Group>
@@ -373,7 +372,7 @@ export default function Main() {
                   ...res,
                   includedInOlym: e.target.value,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
             <Form.Text className="text-muted">
@@ -399,7 +398,7 @@ export default function Main() {
                   ...res,
                   notableStars: [id],
                 });
-                console.log(res);
+                // console.log(res);
               }}
             >
               <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{}}>
@@ -414,7 +413,7 @@ export default function Main() {
                 }}
               >
                 {star.map((items, key) => {
-                  console.log("items: ", items);
+                  // console.log("items: ", items);
                   return (
                     <Dropdown.Item
                       key={key}
@@ -439,7 +438,7 @@ export default function Main() {
                   ...res,
                   events: m,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
             <Form.Text className="text-muted">
@@ -503,7 +502,7 @@ export default function Main() {
                   ...res,
                   equipments: m,
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
             <Form.Text className="text-muted">
@@ -602,7 +601,7 @@ export default function Main() {
                     Mixed: mixed,
                   },
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
 
@@ -621,7 +620,7 @@ export default function Main() {
                     Mixed: mixed,
                   },
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
 
@@ -640,7 +639,7 @@ export default function Main() {
                     Mixed: mixed,
                   },
                 });
-                console.log(res);
+                // console.log(res);
               }}
             />
           </Form.Group>
@@ -663,7 +662,7 @@ export default function Main() {
                   ...res,
                   coutriesParticipating: [id],
                 });
-                console.log(res);
+                // console.log(res);
               }}
             >
               <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{}}>
