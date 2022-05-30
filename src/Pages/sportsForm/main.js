@@ -4,6 +4,8 @@ import { Button, Container, Form, Col, Row, Dropdown } from "react-bootstrap";
 import axios from "axios";
 
 export default function Main() {
+  const DOMAIN = process.env.REACT_APP_BACKEND_DOMAIN;
+
   const [loading, setLoading] = useState(false);
   const [men, setMen] = useState([]);
   const [women, setWomen] = useState([]);
@@ -63,7 +65,7 @@ export default function Main() {
     try {
       var config = {
         method: "get",
-        url: `https://127.0.0.1:5000/kb/all-sports`,
+        url: `${DOMAIN}/kb/all-sports`,
       };
       const response = await axios(config);
       if (response.data) {
@@ -84,7 +86,7 @@ export default function Main() {
     try {
       var config = {
         method: "get",
-        url: `https://127.0.0.1:5000/kb/all-countries`,
+        url: `${DOMAIN}/kb/all-countries`,
       };
       const response = await axios(config);
       if (response.data) {
@@ -109,7 +111,7 @@ export default function Main() {
     try {
       var config = {
         method: "get",
-        url: `https://127.0.0.1:5000/kb/all-notable-stars`,
+        url: `${DOMAIN}/kb/all-notable-stars`,
       };
       const response = await axios(config);
       if (response.data) {
@@ -136,7 +138,7 @@ export default function Main() {
   }, []);
   
   async function handleAddSport() {
-    await setRes({
+     setRes({
       ...res,
       calender: calendarField,
     });
@@ -145,7 +147,7 @@ export default function Main() {
       setLoading(true);
       var config = {
         method: "post",
-        url: "https://127.0.0.1:5000/kb/admin/add-sports-data",
+        url: `${DOMAIN}/kb/admin/add-sports-data`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
