@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Container, Form, Col, Row, Dropdown } from "react-bootstrap";
 import axios from "axios";
-import { getSelectionRange } from "@testing-library/user-event/dist/utils";
 
 export default function Main() {
   const [loading, setLoading] = useState(false);
@@ -44,8 +43,9 @@ export default function Main() {
   const [data, setData] = useState({
     sports: [],
     country: [],
-    star: [],
+    // star: [],
   });
+  const [star,setStar] = useState([])
   const [seletedSport, setSelectedSport] = useState({
     name: "Select Sport",
     id: "",
@@ -112,12 +112,10 @@ export default function Main() {
       };
       const response = await axios(config);
       if (response.data) {
-        console.log(response.data);
+        console.log("response: ",response.data);
         // console.log(JSON.stringify(response.data));
-        setData({
-          ...data,
-          star: response.data,
-        });
+        setStar(response.data);
+        
         // console.log("country: ",country)
       } else {
         alert("Something went wrong!");
@@ -133,7 +131,11 @@ export default function Main() {
     // getData();
     getCountry();
     getStar();
+    
   }, []);
+  useEffect(()=>{
+    console.log("star: ",star)
+  },[star])
   async function handleAddSport() {
     setRes({
       ...res,
@@ -259,14 +261,13 @@ export default function Main() {
     setFormatField([...values]);
   };
   
-  useEffect(()=>{
-    console.log(data.star.length)
-  },[data])
+  // useEffect(()=>{
+  //   console.log(star.length)
+  // },[data])
   return (
     <>
     {
-      data.star.length > 0 && data.country.length > 0 
-      ?
+      star.length > 0 && data.country.length > 0 ?
       <div>
       <div style={{ textAlign: "center", margin: "2rem 0 2rem 0" }}>
         <p style={{ fontSize: "2rem", fontWeight: "bold" }}>Add Sport Detail</p>
@@ -412,7 +413,7 @@ export default function Main() {
                   overflowY: "scroll",
                 }}
               >
-                {data.star.map((items, key) => {
+                {star.map((items, key) => {
                   console.log("items: ", items);
                   return (
                     <Dropdown.Item
@@ -702,8 +703,8 @@ export default function Main() {
         </div>
       </Container>
     </div>
-    :
-    null
+   :
+   <p>Loading...</p>
     }
     </>
   );
